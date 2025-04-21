@@ -1,42 +1,63 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Make the whole app feel soft and cozy */
+body {
+  background: #fdfdfd;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Wishlist item card hover effect */
+.card:hover {
+  transform: scale(1.01);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
 }
 
-@keyframes logo-spin {
+/* Star button highlight on hover */
+.btn-warning:hover,
+.btn-outline-secondary:hover {
+  filter: brightness(1.1);
+  transition: all 0.2s ease;
+}
+
+/* Delete button danger glow */
+.btn-danger:hover {
+  background-color: #ff4d4d;
+  box-shadow: 0 0 8px rgba(255, 77, 77, 0.5);
+  transition: all 0.2s ease;
+}
+
+/* Add item input animation */
+input.form-control:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 6px rgba(13, 110, 253, 0.25);
+}
+
+/* Smooth fade-in for the app */
+.container {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(15px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Input styling when in edit mode */
+input.form-control {
+  width: 200px;
+  padding: 6px;
+  font-size: 14px;
+  border-radius: 5px;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Edit button hover effect */
+.btn-secondary:hover {
+  background-color: #6c757d;
+  transition: background-color 0.2s ease;
 }

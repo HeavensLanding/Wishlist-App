@@ -1,31 +1,39 @@
-import WishlistItem from "./WishlistItem"; // Import the child component
+import WishlistItem from "./WishlistItem";
 
-// Define the shape of a wishlist item
+// Type definition for a wishlist item
 type WishlistItemType = {
   id: number;
   name: string;
   starred: boolean;
 };
 
-// Define the props that the Wishlist component expects
+// Props this component receives
 type Props = {
-  list: WishlistItemType[]; // The list of items to display
-  setList: React.Dispatch<React.SetStateAction<WishlistItemType[]>>; // Function to update the list
-  searchTerm: string; // The current value of the search input
+  list: WishlistItemType[];
+  setList: React.Dispatch<React.SetStateAction<WishlistItemType[]>>;
+  searchTerm: string;
 };
 
 export default function Wishlist({ list, setList, searchTerm }: Props) {
-  // Filter the list based on the search term (case-insensitive match)
+  // Filter the wishlist based on the search input (case-insensitive)
   const filteredList = list.filter((item) =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <div>
-      {/* Map over the filtered list and render each item */}
-      {filteredList.map((item) => (
-        <WishlistItem key={item.id} item={item} setList={setList} />
-      ))}
+    // Bootstrap card container for the entire wishlist
+    <div className="mt-4">
+      <h4 className="mb-3">Wishlist Items</h4>
+
+      {/* If list is empty, show a message */}
+      {filteredList.length === 0 ? (
+        <div className="alert alert-info">No items match your search.</div>
+      ) : (
+        filteredList.map((item) => (
+          // Render each item using the WishlistItem component
+          <WishlistItem key={item.id} item={item} setList={setList} />
+        ))
+      )}
     </div>
   );
 }
